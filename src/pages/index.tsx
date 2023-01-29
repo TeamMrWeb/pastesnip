@@ -1,13 +1,13 @@
 import PageLayout from "@/components/PageLayout"
-// import Test from "@/components/Test"
-import { useState } from "react"
+import TextArea from "@/components/TextArea"
 
 export default function Home() {
-  const [text, setText] = useState("")
   return (
     <PageLayout>
-      <main className="w-full h-screen bg-black">
-        <textarea name="cosa" value={text} onChange={e => setText(e.target.value)}></textarea>
+      <main className="flex place-content-center pt-20 box-border">
+        <div className="w-full max-w-maximum p-5 box-border">
+          <TextArea />
+        </div>
       </main>
     </PageLayout>
   )

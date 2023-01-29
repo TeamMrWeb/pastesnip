@@ -4,7 +4,7 @@ import logo from "../../public/logo.png"
 
 export default function PageLayout({ children }: { children: React.ReactNode }) {
   return (
-    <>
+    <div className="w-full h-screen bg-green-1">
       <Head>
         <title>Pastesnip</title>
         <meta name="description" content="A text storage website" />
@@ -13,6 +13,6 @@ export default function PageLayout({ children }: { children: React.ReactNode }) 
       </Head>
       <Header />
       {children}
-    </>
+    </div>
   )
 }
