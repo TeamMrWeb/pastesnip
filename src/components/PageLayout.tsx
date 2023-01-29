@@ -12,7 +12,7 @@ export default function PageLayout({ children }: { children: React.ReactNode }) 
         <link rel="icon" href={logo.src} />
       </Head>
       <Header />
-      <main className="h-max ">{children}</main>
+      {children}
     </>
   )
 }
