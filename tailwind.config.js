@@ -9,7 +9,11 @@ module.exports = {
     "./src/**/*.{js,ts,jsx,tsx}"
   ],
   theme: {
-    extend: {},
+    extend: {
+      maxWidth: {
+        maximum: "1200px"
+      }
+    },
     colors: {
       "green-1": "#081C15",
       "green-2": "#1B4332",
