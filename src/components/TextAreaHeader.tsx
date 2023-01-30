@@ -1,22 +1,27 @@
+import Select from "./Select"
+import Switch from "./Switch"
+
 export default function TextAreaHeader({
-  showHighLight,
-  setShowHighLight
+  showHighlight,
+  setShowHighlight,
+  setLanguageHighlight
 }: {
-  showHighLight: boolean
-  setShowHighLight: (value: boolean) => void
+  showHighlight: boolean
+  setShowHighlight: (value: boolean) => void
+  setLanguageHighlight: (value: string) => void
 }) {
   return (
-    <header>
-      <div className="form-control w-40">
-        <label className="cursor-pointer label">
-          <span className="label-text">Show Highlight</span>
-          <input
-            type="checkbox"
-            className="toggle toggle-accent"
-            checked={showHighLight}
-            onChange={() => setShowHighLight(!showHighLight)}
+    <header className="w-full">
+      <div className="form-control w-full flex flex-row justify-between">
+        <Switch getter={showHighlight} setter={setShowHighlight} />
+        <div className="w-full max-w-[340px]">
+          <Select
+            name="Syntax Highlight"
+            firstValue="Select Syntax"
+            options={["jsx", "javascript", "php"]}
+            setValue={setLanguageHighlight}
           />
-        </label>
+        </div>
       </div>
     </header>
   )

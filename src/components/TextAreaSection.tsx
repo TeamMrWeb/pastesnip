@@ -1,31 +1,37 @@
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter"
-import { darcula } from "react-syntax-highlighter/dist/cjs/styles/prism"
+import { atomDark as cosa } from "react-syntax-highlighter/dist/cjs/styles/prism"
 import { useState } from "react"
 import TextAreaHeader from "./TextAreaHeader"
 import TextArea from "./TextArea"
 
 function TextAreaSection() {
   const [text, setText] = useState("")
-  const [showHighLight, setShowHighLight] = useState(true)
+  const [showHighlight, setShowHighlight] = useState(true)
+  const [languageHighlight, setLanguageHighlight] = useState("jsx")
 
   return (
-    <div className="text-green-9">
-      <div className="flex flex-col gap-2">
-        <TextAreaHeader showHighLight={showHighLight} setShowHighLight={setShowHighLight} />
+    <section className="text-green-9">
+      <h1 className="text-white text-xl">New Paste</h1>
+      <div className="flex flex-col gap-2 pt-5 box-border">
+        <TextAreaHeader
+          showHighlight={showHighlight}
+          setShowHighlight={setShowHighlight}
+          setLanguageHighlight={setLanguageHighlight}
+        />
         <div className="flex gap-2 transition-all duration-1000">
-          <TextArea text={text} setText={setText} showHighLight={showHighLight} />
+          <TextArea text={text} setText={setText} showHighlight={showHighlight} />
           <SyntaxHighlighter
-            language="javascript"
-            style={darcula}
+            language={languageHighlight}
+            style={cosa}
             className={`${
-              showHighLight ? "w-[50%]" : "w-0 !p-0"
-            } !m-0  transition-all duration-1000`}
+              showHighlight ? "w-[50%]" : "w-0 !p-0"
+            } !m-0 transition-all duration-1000`}
           >
             {text}
           </SyntaxHighlighter>
         </div>
       </div>
-    </div>
+    </section>
   )
 }
 export default TextAreaSection
