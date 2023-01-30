@@ -2,31 +2,28 @@ import { Form, Formik } from "formik"
 import * as Yup from "yup"
 import FormGroupInput from "../components/FormGroupInput"
 import Button from "../components/Button"
-import { signUpSchema } from "../utils/yupSchemas"
+import { signInSchema } from "../utils/yupSchemas"
 import AccountQuestion from "../components/AccountQuestion"
-import { useSignUp } from "@/hooks/useSignUp"
+import { useSignIn } from "@/hooks/useSignIn"
 
-export default function Signup() {
-  const { handleSubmit } = useSignUp()
+export default function Signin() {
+  const { handleSubmit } = useSignIn()
 
   return (
     <main className="flex place-content-center box-border">
       <div className="w-full max-w-maximum h-full p-5 pt-20 box-border bg-green-2">
         <header className="mb-10">
-          <h1 className="font-bold text-[20px] text-white">Sign up</h1>
-          <p>Join to Pastesnip and share your pastes with all the world!</p>
+          <h1 className="font-bold text-[20px] text-white">Sign in</h1>
         </header>
         <Formik
           initialValues={{
-            username: "",
             email: "",
             password: ""
           }}
-          validationSchema={Yup.object(signUpSchema)}
+          validationSchema={Yup.object(signInSchema)}
           onSubmit={values => handleSubmit(values)}
         >
           <Form className="max-w-[400px] flex flex-col justify-start items-center gap-4">
-            <FormGroupInput type="string" name="username" label="Username" placeholder="juanx209" />
             <FormGroupInput
               type="email"
               name="email"
@@ -47,11 +44,7 @@ export default function Signup() {
               text="Create Account"
               type="submit"
             />
-            <AccountQuestion
-              question="Already have an account?"
-              href="/signin"
-              hrefText="Sign in"
-            />
+            <AccountQuestion question="Don't have an account?" href="/signup" hrefText="Sign up" />
           </Form>
         </Formik>
       </div>
