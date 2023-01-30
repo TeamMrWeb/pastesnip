@@ -18,7 +18,7 @@ function TextAreaSection() {
           setShowHighlight={setShowHighlight}
           setLanguageHighlight={setLanguageHighlight}
         />
-        <div className="flex gap-2 transition-all duration-1000">
+        <div className={`flex ${showHighlight ? "gap-2" : "gap-0"} transition-all duration-1000`}>
           <TextArea text={text} setText={setText} showHighlight={showHighlight} />
           <SyntaxHighlighter
             language={languageHighlight}

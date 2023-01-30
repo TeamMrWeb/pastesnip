@@ -1,3 +1,4 @@
+import Button from "./Button"
 import Select from "./Select"
 import TextInput from "./TextInput"
 
@@ -14,6 +15,7 @@ export default function PasteSettings() {
         />
         <TextInput name="Tags" placeholder="" />
         <Select name="Exposure" firstValue="Select your exposure" options={["Public", "Private"]} />
+        <Button text="Create new paste" type="submit" variant="primary" className="mt-5" />
       </section>
     </aside>
   )

@@ -11,7 +11,7 @@ export default function TextArea({
     <textarea
       className={`${
         showHighlight ? "w-[50%]" : "w-full"
-      } min-h-96 bg-green-1 text-gray-1 outline-none p-2 box-border transition-all duration-1000 resize-none`}
+      } min-h-[400px] bg-green-1 text-gray-1 outline-none p-2 box-border transition-all duration-1000 resize-none`}
       name="cosa"
       value={text}
       onChange={e => setText(e.target.value)}
