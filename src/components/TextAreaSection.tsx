@@ -1,14 +1,14 @@
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter"
-import { atomDark as cosa } from "react-syntax-highlighter/dist/cjs/styles/prism"
+import { atomDark } from "react-syntax-highlighter/dist/cjs/styles/prism"
 import { useState } from "react"
 import TextAreaHeader from "./TextAreaHeader"
 import TextArea from "./TextArea"
+import { usePasteContext } from "@/contexts/PasteContext"
 
 function TextAreaSection() {
-  const [text, setText] = useState("")
   const [showHighlight, setShowHighlight] = useState(true)
   const [languageHighlight, setLanguageHighlight] = useState("jsx")
-
+  const { paste } = usePasteContext()
   return (
     <section className="text-green-9">
       <h1 className="text-white text-xl">New Paste</h1>
@@ -19,15 +19,15 @@ function TextAreaSection() {
           setLanguageHighlight={setLanguageHighlight}
         />
         <div className={`flex ${showHighlight ? "gap-2" : "gap-0"} transition-all duration-1000`}>
-          <TextArea text={text} setText={setText} showHighlight={showHighlight} />
+          <TextArea showHighlight={showHighlight} />
           <SyntaxHighlighter
             language={languageHighlight}
-            style={cosa}
+            style={atomDark}
             className={`${
               showHighlight ? "w-[50%]" : "w-0 !p-0"
             } !m-0 transition-all duration-1000`}
           >
-            {text}
+            {paste}
           </SyntaxHighlighter>
         </div>
       </div>
