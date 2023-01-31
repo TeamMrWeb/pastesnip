@@ -1,10 +1,12 @@
 import { Form, Formik } from "formik"
 import * as Yup from "yup"
-import FormGroupInput from "../components/FormGroupInput"
 import Button from "../components/Button"
 import { signUpSchema } from "../utils/yupSchemas"
 import AccountQuestion from "../components/AccountQuestion"
 import { useSignUp } from "@/hooks/useSignUp"
+import FormInput from "@/components/FormInput"
+import FormStringInput from "@/components/FormStringInput"
+import FormPasswordInput from "@/components/FormPasswordInput"
 
 export default function Signup() {
   const { handleSubmit } = useSignUp()
@@ -26,27 +28,33 @@ export default function Signup() {
           onSubmit={values => handleSubmit(values)}
         >
           <Form className="max-w-[400px] flex flex-col justify-start items-center gap-4">
-            <FormGroupInput type="string" name="username" label="Username" placeholder="juanx209" />
-            <FormGroupInput
-              type="email"
-              name="email"
-              label="Email"
-              placeholder="example@gmail.com"
-            />
-            <FormGroupInput
-              type="password"
-              name="password"
-              label="Password"
-              placeholder="***********"
-              minLength={4}
-              maxLength={15}
-            />
-            <Button
-              className="w-full bg-red-1 dark:bg-red-1"
-              variant="primary"
-              text="Create Account"
-              type="submit"
-            />
+            <FormInput name="username">
+              <FormStringInput
+                type="text"
+                name="username"
+                label="Username"
+                placeholder="juanx209"
+              />
+            </FormInput>
+            <FormInput name="email">
+              <FormStringInput
+                type="email"
+                name="email"
+                label="Email"
+                placeholder="example@gmail.com"
+              />
+            </FormInput>
+            <FormInput name="password">
+              <FormPasswordInput
+                type="password"
+                name="password"
+                label="Password"
+                placeholder="***********"
+                minLength={4}
+                maxLength={15}
+              />
+            </FormInput>
+            <Button className="w-full " variant="primary" text="Create Account" type="submit" />
             <AccountQuestion
               question="Already have an account?"
               href="/signin"
