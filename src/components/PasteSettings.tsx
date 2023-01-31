@@ -1,12 +1,14 @@
 import { pasteSchema } from "@/utils/yupSchemas"
 import Button from "./Button"
 import Select from "./Select"
-import TextInput from "./TextInput"
 import { Form, Formik } from "formik"
 import * as Yup from "yup"
 import { useState } from "react"
 import FormInput from "./FormInput"
 import FormStringInput from "./FormStringInput"
+import { useApollo } from "@/apollo/useApollo"
+import { CREATE_PASTE } from "@/graphql/mutations"
+import { usePasteContext } from "@/contexts/PasteContext"
 
 interface PasteSettingsProps {
   title: string
@@ -18,9 +20,19 @@ interface PasteSettingsProps {
 export default function PasteSettings() {
   const [exposure, setExposure] = useState("Public")
   const [syntaxhighLight, setSyntaxhighLight] = useState("Javascript")
+  const { lazyMethod: createNewPaste } = useApollo(CREATE_PASTE)
+  const { paste } = usePasteContext()
 
   const handleSubmit = (values: PasteSettingsProps) => {
-    console.log(values)
+    const newPaste = {
+      title: values.title,
+      content: paste,
+      syntaxHighlight: syntaxhighLight,
+      private: exposure === "public",
+      tags: values.tags.split(" ")
+    }
+    console.log(newPaste)
+    createNewPaste({ variables: newPaste })
   }
 
   return (
@@ -59,7 +71,7 @@ export default function PasteSettings() {
             <FormInput name="tags">
               <FormStringInput
                 type="text"
-                name="Tags"
+                name="tags"
                 label="Tags"
                 placeholder=""
                 containerClassName="flex items-center justify-between text-gray-1"
