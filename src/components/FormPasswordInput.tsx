@@ -30,7 +30,7 @@ export default function FormPasswordInput({
       <Field
         className={`w-full p-2 px-3 text-gray-1 bg-green-1 rounded-lg focus:outline outline-1 outline-green-4 focus:border-green-1 shadow-none focus:outline-offset-0 focus:outline-1 focus:outline-green-4 ${fieldClassName}`}
         name={name}
-        type="password"
+        type={showPassword ? "text" : "password"}
         id={type}
         placeholder={placeholder}
         minLength={minLength}
