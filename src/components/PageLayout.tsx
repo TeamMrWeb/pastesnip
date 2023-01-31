@@ -1,6 +1,8 @@
 import Head from "next/head"
 import Header from "./Header"
 import logo from "../../public/logo.png"
+import { ToastContainer } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
 
 export default function PageLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -12,6 +14,17 @@ export default function PageLayout({ children }: { children: React.ReactNode }) 
         <link rel="icon" href={logo.src} />
       </Head>
       <Header />
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       {children}
     </div>
   )
