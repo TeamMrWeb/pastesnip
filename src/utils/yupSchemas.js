@@ -30,3 +30,18 @@ export const signInSchema = {
     // )
     .required("Required")
 }
+
+export const pasteSchema = {
+  title: Yup.string()
+    .max(20, "Must contain 20 characters or less")
+    .matches(/[^a-zA-Z]+/g, "Must contain only letters")
+    .required("Required"),
+  syntaxHighlight: Yup.string().required("Required"),
+  tags: Yup.string()
+    .max(20, "Must contain 20 characters or less")
+    .matches(
+      /^([a-zA-Z'-.]+ [a-zA-Z'-.]+\w{1,}(?: [a-zA-Z'-.]+)?)$/gm,
+      "Must contain only letters, one or more tags and a space between them"
+    ),
+  exposure: Yup.string().required("Required")
+}
