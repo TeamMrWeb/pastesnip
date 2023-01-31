@@ -1,10 +1,12 @@
 import { Form, Formik } from "formik"
 import * as Yup from "yup"
-import FormGroupInput from "../components/FormGroupInput"
 import Button from "../components/Button"
 import { signInSchema } from "../utils/yupSchemas"
 import AccountQuestion from "../components/AccountQuestion"
 import { useSignIn } from "@/hooks/useSignIn"
+import FormInput from "@/components/FormInput"
+import FormStringInput from "@/components/FormStringInput"
+import FormPasswordInput from "@/components/FormPasswordInput"
 
 export default function Signin() {
   const { handleSubmit } = useSignIn()
@@ -24,26 +26,25 @@ export default function Signin() {
           onSubmit={values => handleSubmit(values)}
         >
           <Form className="max-w-[400px] flex flex-col justify-start items-center gap-4">
-            <FormGroupInput
-              type="email"
-              name="email"
-              label="Email"
-              placeholder="example@gmail.com"
-            />
-            <FormGroupInput
-              type="password"
-              name="password"
-              label="Password"
-              placeholder="***********"
-              minLength={4}
-              maxLength={15}
-            />
-            <Button
-              className="w-full bg-red-1 dark:bg-red-1"
-              variant="primary"
-              text="Create Account"
-              type="submit"
-            />
+            <FormInput name="email">
+              <FormStringInput
+                type="email"
+                name="email"
+                label="Email"
+                placeholder="example@gmail.com"
+              />
+            </FormInput>
+            <FormInput name="password">
+              <FormPasswordInput
+                type="password"
+                name="password"
+                label="Password"
+                placeholder="***********"
+                minLength={4}
+                maxLength={15}
+              />
+            </FormInput>
+            <Button className="w-full" variant="primary" text="Create Account" type="submit" />
             <AccountQuestion question="Don't have an account?" href="/signup" hrefText="Sign up" />
           </Form>
         </Formik>
