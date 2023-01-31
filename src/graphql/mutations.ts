@@ -21,3 +21,11 @@ export const CREATE_PASTE = gql`
     }
   }
 `
+
+export const CREATE_USER = gql`
+  mutation createUser($username: String!, $email: String!, $password: String!) {
+    createNewUser(username: $username, email: $email, password: $password) {
+      id
+    }
+  }
+`
