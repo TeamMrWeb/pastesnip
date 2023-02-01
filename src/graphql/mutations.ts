@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client"
 
 export const CREATE_PASTE = gql`
-  mutation createNewPaste(
+  mutation create_paste(
     $title: String!
     $content: String!
     $syntax_highlight: String!
@@ -23,9 +23,18 @@ export const CREATE_PASTE = gql`
 `
 
 export const CREATE_USER = gql`
-  mutation createUser($username: String!, $email: String!, $password: String!) {
+  mutation create_new_user($username: String!, $email: String!, $password: String!) {
     createNewUser(username: $username, email: $email, password: $password) {
       id
+    }
+  }
+`
+
+export const LOGIN_USER = gql`
+  mutation login_user($email: String!, $password: String!) {
+    loginUser(email: $email, password: $password) {
+      access
+      refresh
     }
   }
 `

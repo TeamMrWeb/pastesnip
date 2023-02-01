@@ -9,7 +9,6 @@ import FormStringInput from "./FormStringInput"
 import { useApollo } from "@/apollo/useApollo"
 import { CREATE_PASTE } from "@/graphql/mutations"
 import { usePasteContext } from "@/contexts/PasteContext"
-
 interface PasteSettingsProps {
   title: string
   syntaxHighlight: string
@@ -20,14 +19,17 @@ interface PasteSettingsProps {
 export default function PasteSettings() {
   const [exposure, setExposure] = useState("Public")
   const [syntaxhighLight, setSyntaxhighLight] = useState("Javascript")
-  const { lazyMethod: createNewPaste } = useApollo(CREATE_PASTE)
+  const { lazyMethod: createNewPaste } = useApollo({
+    gqlType: CREATE_PASTE,
+    successMessage: "You paste has been created successfully"
+  })
   const { paste } = usePasteContext()
 
   const handleSubmit = (values: PasteSettingsProps) => {
     const newPaste = {
       title: values.title,
       content: paste,
-      syntaxHighlight: syntaxhighLight,
+      syntax_highlight: syntaxhighLight,
       private: exposure === "public",
       tags: values.tags.split(" ")
     }
