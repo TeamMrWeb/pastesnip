@@ -3,22 +3,9 @@ import { GraphQLWsLink } from "@apollo/client/link/subscriptions"
 import { getMainDefinition } from "@apollo/client/utilities"
 import { createClient } from "graphql-ws"
 
-export const apolloSetup = () => {
-  const httpLink = new HttpLink({
-    uri: process.env.NEXT_PUBLIC_API_GQL_URL
-  })
+let apolloClient: any
 
-  const authLink = new ApolloLink((operation, forward) => {
-    operation.setContext(() => ({
-      headers: {
-        auth: localStorage.getItem("accessToken"),
-        refresh_token: localStorage.getItem("refreshToken"),
-        ...operation.getContext().headers
-      }
-    }))
-    return forward(operation)
-  })
-
+const createLink = () => {
   const wsLink =
     typeof window !== "undefined"
       ? new GraphQLWsLink(
@@ -27,6 +14,20 @@ export const apolloSetup = () => {
           })
         )
       : null
+
+  const httpLink = new HttpLink({
+    uri: process.env.NEXT_PUBLIC_API_GQL_URL,
+    credentials: "include"
+  })
+
+  const authLink = new ApolloLink((operation, forward) => {
+    operation.setContext(() => ({
+      headers: {
+        ...operation.getContext().headers
+      }
+    }))
+    return forward(operation)
+  })
 
   const splitLink =
     typeof window !== "undefined" && wsLink != null
@@ -41,11 +42,26 @@ export const apolloSetup = () => {
           authLink.concat(httpLink)
         )
       : httpLink
-
-  const client = new ApolloClient({
-    cache: new InMemoryCache(),
-    link: splitLink
-  })
-
-  return { client }
+  return splitLink
 }
+
+function createApolloClient() {
+  return new ApolloClient({
+    ssrMode: typeof window === "undefined",
+    link: createLink(),
+    cache: new InMemoryCache()
+  })
+}
+
+export function initializeApollo(initialState: any = null) {
+  const _apolloClient = apolloClient ?? createApolloClient()
+  if (initialState) {
+    const existingCache = _apolloClient.extract()
+    _apolloClient.cache.restore({ ...existingCache, ...initialState })
+  }
+  if (typeof window === "undefined") return _apolloClient
+  if (!apolloClient) apolloClient = _apolloClient
+  return _apolloClient
+}
+
+export default apolloClient
