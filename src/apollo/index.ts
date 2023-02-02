@@ -1,6 +1,7 @@
 import { ApolloClient, ApolloLink, HttpLink, InMemoryCache, split } from "@apollo/client"
 import { GraphQLWsLink } from "@apollo/client/link/subscriptions"
 import { getMainDefinition } from "@apollo/client/utilities"
+import { getCookie } from "cookies-next"
 import { createClient } from "graphql-ws"
 
 let apolloClient: any
@@ -23,6 +24,8 @@ const createLink = () => {
   const authLink = new ApolloLink((operation, forward) => {
     operation.setContext(() => ({
       headers: {
+        auth: getCookie("accessToken"),
+        refresh: getCookie("refreshToken"),
         ...operation.getContext().headers
       }
     }))
@@ -49,7 +52,8 @@ function createApolloClient() {
   return new ApolloClient({
     ssrMode: typeof window === "undefined",
     link: createLink(),
-    cache: new InMemoryCache()
+    cache: new InMemoryCache(),
+    connectToDevTools: true
   })
 }
 
