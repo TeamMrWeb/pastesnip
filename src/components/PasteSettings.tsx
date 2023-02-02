@@ -33,7 +33,6 @@ export default function PasteSettings() {
       private: exposure === "public",
       tags: values.tags.split(" ")
     }
-    console.log(newPaste)
     createNewPaste({ variables: newPaste })
   }
 

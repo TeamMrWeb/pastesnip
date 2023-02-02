@@ -16,10 +16,12 @@ export const serverSideApolloFetching = async ({
   variables?: any
 }) => {
   const accessToken = getCookie("accessToken", { req, res })
+  const refreshToken = getCookie("refreshToken", { req, res })
   const apolloClient = initializeApollo()
   const context = {
     headers: {
-      auth: accessToken
+      auth: accessToken,
+      refresh: refreshToken
     }
   }
 
