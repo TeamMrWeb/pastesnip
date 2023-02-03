@@ -1,13 +1,27 @@
 import PasteSettings from "@/components/PasteSettings"
 import TextAreaSection from "@/components/TextAreaSection"
+import { LOGGED_USER } from "@/graphql/queries"
+import { serverSideApolloFetching } from "../apollo/serverSideApolloFetching"
 
-export default function Home() {
+export default function Home({ data }: { data: any }) {
+  console.log(data)
   return (
-    <main className="flex place-content-center box-border">
-      <div className="w-full max-w-maximum h-full p-5 pt-20 box-border bg-green-2">
-        <TextAreaSection />
-        <PasteSettings />
-      </div>
-    </main>
+    <>
+      <TextAreaSection />
+      <PasteSettings />
+    </>
   )
+}
+
+export async function getServerSideProps({ req, res }: { req: any; res: any }) {
+  const data = await serverSideApolloFetching({
+    fetch: "query",
+    req,
+    res,
+    schema: LOGGED_USER
+  })
+
+  return {
+    props: { data }
+  }
 }

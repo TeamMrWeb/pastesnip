@@ -25,7 +25,11 @@ export default function PageLayout({ children }: { children: React.ReactNode }) 
         draggable
         pauseOnHover
       />
-      {children}
+      <main className="flex place-content-center box-border">
+        <div className="w-full max-w-maximum h-full p-5 pt-20 box-border bg-green-2">
+          {children}
+        </div>
+      </main>
     </div>
   )
 }
