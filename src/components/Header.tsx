@@ -7,10 +7,13 @@ export default function Header() {
   const loggeduser = true
   return (
     <header className="flex place-content-center border-b border-b-green-2">
-      <div className="w-full max-w-maximum flex justify-between items-center text-green-9 py-2 box-border">
+      <div
+        className="w-full max-w-maximum flex justify-between items-center text-green-9 py-2 box-border"
+        style={{ fontSize: "clamp(.9rem, 1vw, 1rem)" }}
+      >
         <Link href="/" className="flex items-center">
           <Image src={logo} alt="Logo" width={100} height={100} />
-          PASTESNIP
+          <p className="hidden sm:inline-block">PASTESNIP</p>
         </Link>
         <div className="flex gap-5">
           <Link href="/pastes" className="flex items-center hover:text-green-8">
