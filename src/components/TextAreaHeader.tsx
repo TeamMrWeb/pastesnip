@@ -11,7 +11,7 @@ export default function TextAreaHeader({
   setLanguageHighlight: (value: string) => void
 }) {
   return (
-    <header className="w-full">
+    <section className="w-full">
       <div className="form-control w-full flex flex-row justify-between">
         <Switch getter={showHighlight} setter={setShowHighlight} />
         <div className="w-full max-w-[340px]">
@@ -23,6 +23,6 @@ export default function TextAreaHeader({
           />
         </div>
       </div>
-    </header>
+    </section>
   )
 }
