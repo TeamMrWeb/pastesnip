@@ -10,7 +10,7 @@ export default function Paste() {
 
   return (
     <div className="flex flex-col gap-5">
-      <header className="flex justify-between">
+      <header className="flex justify-between flex-wrap gap-y-3">
         <PasteUserTab pasteTitle="cosa" username="finsiterix" createdAt="23/93" />
         <div className="w-full max-w-[340px]">
           <Select
