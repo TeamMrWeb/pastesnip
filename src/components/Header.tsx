@@ -14,7 +14,7 @@ export default function Header() {
         </Link>
         <div className="flex gap-5">
           <Link href="/pastes" className="flex items-center hover:text-green-8">
-            Public pastes
+            PUBLIC PASTES
           </Link>
           {loggeduser ? <UserTab /> : null}
         </div>
