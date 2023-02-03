@@ -9,3 +9,14 @@ export const LOGGED_USER = gql`
     }
   }
 `
+
+export const PASTES = gql`
+  query {
+    pastes {
+      id
+      title
+      createdAt
+      syntax_highlight
+    }
+  }
+`
