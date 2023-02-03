@@ -12,14 +12,15 @@ export default function UserTab() {
 
   return (
     <>
-      <div className="dropdown !bg-green-1 !hover:bg-green-8">
+      <div className="dropdown dropdown-end !bg-green-1 !hover:bg-green-8">
         <label
           tabIndex={0}
           className="btn m-1 flex items-center gap-4 bg-green-1 text-green-8 hover:!bg-green-2"
+          style={{ fontSize: "clamp(.9rem, 1vw, 1rem)" }}
           ref={buttonRef}
           onClick={() => setShowDropdown(!showDropdown)}
         >
-          Finisterix
+          <p className="hidden sm:inline-block">Finisterix</p>
           <UserIcon className="w-5 fill-green-4" />
         </label>
         <ul
