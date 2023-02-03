@@ -18,18 +18,17 @@ export const serverSideApolloFetching = async ({
   const accessToken = getCookie("accessToken", { req, res })
   const refreshToken = getCookie("refreshToken", { req, res })
   const apolloClient = initializeApollo()
-
   const context = {
     headers: {
       auth: accessToken,
       refresh: refreshToken
     }
   }
-  await apolloClient[fetch]({
+  const data = await apolloClient[fetch]({
     context,
     query: schema,
     variables
   })
 
-  return apolloClient
+  return data
 }
