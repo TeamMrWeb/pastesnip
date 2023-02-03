@@ -12,7 +12,12 @@ export default function Header() {
           <Image src={logo} alt="Logo" width={100} height={100} />
           PASTESNIP
         </Link>
-        <div>{loggeduser ? <UserTab /> : null}</div>
+        <div className="flex gap-5">
+          <Link href="/pastes" className="flex items-center hover:text-green-8">
+            Public pastes
+          </Link>
+          {loggeduser ? <UserTab /> : null}
+        </div>
       </div>
     </header>
   )
