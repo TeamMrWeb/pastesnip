@@ -29,6 +29,5 @@ export const serverSideApolloFetching = async ({
     query: schema,
     variables
   })
-
   return data
 }

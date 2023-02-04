@@ -25,7 +25,16 @@ export default function Pastes({ pastes }: { pastes: PasteProps[] }) {
 }
 
 export async function getServerSideProps({ req, res }: { req: any; res: any }) {
-  const data = await serverSideApolloFetching({
+  const accessToken = req.cookies["accessToken"]
+  if (!accessToken) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/signin"
+      }
+    }
+  }
+  const { data } = await serverSideApolloFetching({
     fetch: "query",
     req,
     res,
