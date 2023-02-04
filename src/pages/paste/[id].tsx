@@ -11,7 +11,7 @@ export default function Paste() {
   return (
     <div className="flex flex-col gap-5">
       <header className="flex justify-between flex-wrap gap-y-3">
-        <PasteUserTab pasteTitle="cosa" username="finsiterix" createdAt="23/93" />
+        <PasteUserTab pasteTitle="cosa" subtitle="finsiterix" createdAt="23/93" />
         <div className="w-full max-w-[340px]">
           <Select
             name="Syntax Highlight"
@@ -35,23 +35,23 @@ export default function Paste() {
   )
 }
 
-export async function getServerSideProps({
-  req,
-  res,
-  context
-}: {
-  req: any
-  res: any
-  context: any
-}) {
-  const { id } = context.query
-  // const data = await serverSideApolloFetching({
-  //   fetch: "query",
-  //   req,
-  //   res,
-  //   schema: LOGGED_USER
-  // })
-  // return {
-  //   props: { data }
-  // }
-}
+// export async function getServerSideProps({
+//   req,
+//   res,
+//   context
+// }: {
+//   req: any
+//   res: any
+//   context: any
+// }) {
+//   // const { id } = context.query
+//   // const data = await serverSideApolloFetching({
+//   //   fetch: "query",
+//   //   req,
+//   //   res,
+//   //   schema: LOGGED_USER
+//   // })
+//   // return {
+//   //   props: { data }
+//   // }
+// }

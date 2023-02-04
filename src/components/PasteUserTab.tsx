@@ -2,11 +2,11 @@ import CalendarIcon from "../../public/calendar-icon.svg"
 
 export default function PasteUserTab({
   pasteTitle,
-  username,
+  subtitle,
   createdAt
 }: {
   pasteTitle: string
-  username: string
+  subtitle?: string
   createdAt: string
 }) {
   return (
@@ -15,7 +15,7 @@ export default function PasteUserTab({
       <div className="flex flex-col gap-1">
         <h1 className="leading-3 font-bold text-gray-1">{pasteTitle}</h1>
         <div className="flex gap-5">
-          <p className="">{username}</p>
+          {subtitle && <p>{subtitle}</p>}
           <div className="flex gap-1">
             <CalendarIcon className="w-4 fill-gray-1" />
             <p>{createdAt}</p>
