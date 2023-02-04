@@ -28,7 +28,6 @@ export const useSignIn = () => {
       email: values.email,
       password: values.password
     }
-    console.log(user)
     loginUser({ variables: user })
   }
 
