@@ -3,7 +3,7 @@ import { ValuesProps } from "../../interfaces"
 import { useRouter } from "next/router"
 import { LOGIN_USER } from "@/graphql/mutations"
 import { useEffect } from "react"
-import { setCookie } from "cookies-next"
+import { cookies } from "@/utils/Cookies"
 
 export const useSignIn = () => {
   const router = useRouter()
@@ -18,8 +18,7 @@ export const useSignIn = () => {
 
   useEffect(() => {
     if (!error && !loading && data) {
-      setCookie("accessToken", data.loginUser.access)
-      setCookie("refreshToken", data.loginUser.refresh)
+      cookies({ accessToken: data.loginUser.access, refreshToken: data.loginUser.refresh })
       router.push("/")
     }
   }, [loading])
