@@ -8,6 +8,7 @@ export default function User({ pastes }: { pastes: PasteProps[] }) {
     <>
       <PasteUserTab pasteTitle="Finisterix" createdAt="23/93" />
       <ul className="flex flex-col w-full mt-5">
+        <h2 className="text-white text-xl">My pastes</h2>
         {pastes &&
           pastes.map((paste: PasteProps) => (
             <Paste
