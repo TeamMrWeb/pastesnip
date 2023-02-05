@@ -47,3 +47,9 @@ export const REFRESH_TOKEN = gql`
     }
   }
 `
+
+export const SEND_VERIFICATION_EMAIL = gql`
+  mutation {
+    sendVerificationEmail
+  }
+`
