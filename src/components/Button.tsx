@@ -32,7 +32,7 @@ export default function Button({
 }) {
   return type === "link" ? (
     <Link
-      className={`text-white ${variantsForLink[variant]} focus:outline-none focus:ring-4 focus:ring-gray-300 font-semibold flex justify-center items-center text-sm px-5 py-2.5 box-border text-center duration-300 rounded-smm ${className}`}
+      className={`text-white ${variantsForLink[variant]} focus:outline-none focus:ring-4 focus:ring-gray-300 font-semibold flex justify-center items-center text-sm px-5 py-2.5 box-border text-center duration-300 rounded-lg ${className}`}
       href={href!}
     >
       {text}
@@ -40,7 +40,7 @@ export default function Button({
   ) : (
     <button
       type={type}
-      className={`text-white ${variantsForButton[variant]} font-semibold focus:outline-none focus:ring-4 focus:ring-gray-300 flex justify-center items-center text-sm px-5 py-2.5 box-border duration-300 text-center hover:text-white rounded-smm ${className}`}
+      className={`text-white ${variantsForButton[variant]} font-semibold focus:outline-none focus:ring-4 focus:ring-gray-300 flex justify-center items-center text-sm px-5 py-2.5 box-border duration-300 text-center hover:text-white rounded-lg ${className}`}
       onClick={onClick}
     >
       {text}
