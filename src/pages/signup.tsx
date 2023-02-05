@@ -12,7 +12,7 @@ export default function Signup() {
   const { handleSubmit } = useSignUp()
 
   return (
-    <>
+    <div className="w-full flex flex-col items-center">
       <header className="mb-10">
         <h1 className="font-bold text-[20px] text-white">Sign up</h1>
         <p>Join to Pastesnip and share your pastes with all the world!</p>
@@ -26,7 +26,7 @@ export default function Signup() {
         validationSchema={Yup.object(signUpSchema)}
         onSubmit={values => handleSubmit(values)}
       >
-        <Form className="max-w-[400px] flex flex-col justify-start items-center gap-4">
+        <Form className="w-full max-w-[410px] flex flex-col justify-start items-center gap-4">
           <FormInput name="username">
             <FormStringInput type="text" name="username" label="Username" placeholder="juanx209" />
           </FormInput>
@@ -52,6 +52,6 @@ export default function Signup() {
           <AccountQuestion question="Already have an account?" href="/signin" hrefText="Sign in" />
         </Form>
       </Formik>
-    </>
+    </div>
   )
 }
