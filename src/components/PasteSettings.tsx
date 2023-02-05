@@ -9,6 +9,8 @@ import FormStringInput from "./FormStringInput"
 import { useApollo } from "@/apollo/useApollo"
 import { CREATE_PASTE } from "@/graphql/mutations"
 import { usePasteContext } from "@/contexts/PasteContext"
+import { useLoggedUserContext } from "@/contexts/LoggedUserContext"
+import { NotificationFailure } from "@/utils/Notifications"
 interface PasteSettingsProps {
   title: string
   syntaxHighlight: string
@@ -24,8 +26,11 @@ export default function PasteSettings() {
     successMessage: "You paste has been created successfully"
   })
   const { paste } = usePasteContext()
+  const { loggedUser } = useLoggedUserContext()
 
   const handleSubmit = (values: PasteSettingsProps) => {
+    if (!loggedUser.verified)
+      return NotificationFailure("You need to verify your email first before creating a paste.")
     const newPaste = {
       title: values.title,
       content: paste,
@@ -33,7 +38,7 @@ export default function PasteSettings() {
       private: exposure === "public",
       tags: values.tags.split(" ")
     }
-    createNewPaste({ variables: newPaste })
+    return createNewPaste({ variables: newPaste })
   }
 
   return (
