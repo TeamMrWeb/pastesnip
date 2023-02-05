@@ -4,7 +4,6 @@ import { PASTES } from "@/graphql/queries"
 import { PasteProps } from "interfaces"
 
 export default function Pastes({ pastes }: { pastes: PasteProps[] }) {
-  console.log(pastes)
   return (
     <>
       <h1 className="text-white text-xl">Pastes list</h1>
@@ -40,7 +39,7 @@ export async function getServerSideProps({ req, res }: { req: any; res: any }) {
     res,
     schema: PASTES
   })
-  const pastes = data.data.pastes
+  const pastes = data.pastes
   return {
     props: {
       pastes
