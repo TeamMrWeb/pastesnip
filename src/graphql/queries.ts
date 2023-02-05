@@ -6,6 +6,7 @@ export const LOGGED_USER = gql`
       id
       username
       email
+      verified
     }
   }
 `
