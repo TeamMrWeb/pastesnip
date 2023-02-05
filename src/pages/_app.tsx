@@ -1,5 +1,6 @@
 import { useApolloInitializer } from "@/apollo/useApolloInitializer"
 import PageLayout from "@/components/PageLayout"
+import { LoggedUserProvider } from "@/contexts/LoggedUserContext"
 import { PasteProvider } from "@/contexts/PasteContext"
 import "@/styles/globals.css"
 import { ApolloProvider } from "@apollo/client"
@@ -10,11 +11,13 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <PasteProvider>
-      <PageLayout>
-        <ApolloProvider client={apolloClient}>
-          <Component {...pageProps} />
-        </ApolloProvider>
-      </PageLayout>
+      <LoggedUserProvider>
+        <PageLayout>
+          <ApolloProvider client={apolloClient}>
+            <Component {...pageProps} />
+          </ApolloProvider>
+        </PageLayout>
+      </LoggedUserProvider>
     </PasteProvider>
   )
 }
