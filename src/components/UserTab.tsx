@@ -2,6 +2,7 @@ import { useSignOut } from "@/hooks/useSignOut"
 import UserIcon from "../../public/user-icon.svg"
 import { useRef, useState } from "react"
 import { useHandleClick } from "@/hooks/useHandleClick"
+import { useLoggedUserContext } from "@/contexts/LoggedUserContext"
 
 export default function UserTab() {
   const { signOut } = useSignOut()
@@ -9,6 +10,7 @@ export default function UserTab() {
   const dropdownRef = useRef<HTMLUListElement>(null)
   const buttonRef = useRef<HTMLLabelElement>(null)
   useHandleClick(showDropdown, dropdownRef.current!, buttonRef.current!, setShowDropdown)
+  const { loggedUser } = useLoggedUserContext()
 
   return (
     <>
@@ -20,7 +22,7 @@ export default function UserTab() {
           ref={buttonRef}
           onClick={() => setShowDropdown(!showDropdown)}
         >
-          <p className="hidden sm:inline-block">Finisterix</p>
+          <p className="hidden sm:inline-block">{loggedUser.username}</p>
           <UserIcon className="w-5 fill-green-4" />
         </label>
         <ul
