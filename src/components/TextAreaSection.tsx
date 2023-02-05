@@ -11,6 +11,7 @@ function TextAreaSection() {
   const { paste } = usePasteContext()
   return (
     <section className="text-green-9">
+      <p>Store or share any text</p>
       <h1 className="text-white text-xl">New Paste</h1>
       <div className="flex flex-col gap-2 pt-5 box-border">
         <TextAreaHeader
