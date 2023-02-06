@@ -1,7 +1,7 @@
 import { useApollo } from "@/apollo/useApollo"
 import { ValuesProps } from "../../interfaces"
 import { LOGIN_USER, SEND_VERIFICATION_EMAIL } from "@/graphql/mutations"
-import { cookies } from "@/utils/Cookies"
+import { cookies } from "@/utils/cookies"
 import { LOGGED_USER } from "@/graphql/queries"
 import { useRouter } from "next/router"
 
@@ -10,11 +10,7 @@ export const useSignIn = () => {
   const { lazyMethod: loginUser, loginError } = useApollo({
     gqlType: LOGIN_USER
   })
-  const {
-    lazyMethod: getLoggedUser,
-    userError,
-    userData
-  } = useApollo({
+  const { lazyMethod: getLoggedUser } = useApollo({
     gqlType: LOGGED_USER
   })
   const { lazyMethod: sendVerificationEmail } = useApollo({
@@ -33,8 +29,10 @@ export const useSignIn = () => {
       accessToken: loginData.loginUser.access,
       refreshToken: loginData.loginUser.refresh
     })
-    if (!loginError && loginData) await getLoggedUser()
-    if (!userError && !userData?.verified) await sendVerificationEmail()
+    if (!loginError)
+      getLoggedUser().then((data: any) => {
+        if (data?.data?.me.verified === false) sendVerificationEmail()
+      })
     router.push("/")
   }
 
