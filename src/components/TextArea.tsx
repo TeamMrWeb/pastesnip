@@ -11,6 +11,7 @@ export default function TextArea({ showHighlight }: { showHighlight: boolean }) 
       value={paste}
       onChange={e => setPaste(e.target.value)}
       spellCheck="false"
+      placeholder="Write your paste here..."
     />
   )
 }
