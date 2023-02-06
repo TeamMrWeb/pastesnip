@@ -7,6 +7,7 @@ export const LOGGED_USER = gql`
       username
       email
       verified
+      createdAt
     }
   }
 `

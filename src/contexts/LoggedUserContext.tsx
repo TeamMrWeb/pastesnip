@@ -6,6 +6,7 @@ interface LoggedUserContextProps {
     username: string
     email: string
     verified: boolean | null
+    createdAt: string
   }
   setLoggedUser: (value: any) => void
 }
@@ -15,7 +16,8 @@ const LoggedUserContext = createContext<LoggedUserContextProps>({
     id: "",
     username: "",
     email: "",
-    verified: null
+    verified: null,
+    createdAt: ""
   },
   setLoggedUser: () => {}
 })
@@ -25,7 +27,8 @@ const LoggedUserProvider = ({ children }: { children: React.ReactNode }) => {
     id: "",
     username: "",
     email: "",
-    verified: null
+    verified: null,
+    createdAt: ""
   })
 
   return (
