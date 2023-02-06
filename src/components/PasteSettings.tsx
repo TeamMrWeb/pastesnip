@@ -11,6 +11,7 @@ import { CREATE_PASTE } from "@/graphql/mutations"
 import { usePasteContext } from "@/contexts/PasteContext"
 import { useLoggedUserContext } from "@/contexts/LoggedUserContext"
 import { NotificationFailure } from "@/utils/Notifications"
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter"
 interface PasteSettingsProps {
   title: string
   syntaxHighlight: string
@@ -70,7 +71,7 @@ export default function PasteSettings() {
               <Select
                 name="Syntax Highlight"
                 firstValue="Select Syntax"
-                options={["Javascript", "HTML", "CSS"]}
+                options={SyntaxHighlighter.supportedLanguages}
                 setValue={setExposure}
               />
             </FormInput>
