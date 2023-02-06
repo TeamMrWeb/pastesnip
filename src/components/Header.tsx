@@ -14,16 +14,16 @@ export default function Header() {
         style={{ fontSize: "clamp(.9rem, 1vw, 1rem)" }}
       >
         <Link href="/" className="flex items-center gap-5">
-          <Image src={logo} alt="Logo" width={40} height={40} />
+          <Image className="ml-5" src={logo} alt="Logo" width={40} height={40} />
           <p className="hidden sm:inline-block">PASTESNIP</p>
         </Link>
         <div className="flex gap-5">
-          {loggedUser.id.length >= 1 ? (
+          {loggedUser?.verified ? (
             <Link href="/pastes" className="flex items-center hover:text-green-8">
               PUBLIC PASTES
             </Link>
           ) : null}
-          {loggedUser.id.length >= 1 ? <UserTab /> : null}
+          {loggedUser?.id?.length >= 1 ? <UserTab /> : null}
         </div>
       </div>
     </header>
