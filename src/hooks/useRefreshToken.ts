@@ -2,7 +2,7 @@ import { REFRESH_TOKEN } from "@/graphql/mutations"
 import { useMutation } from "@apollo/client"
 import { useEffect } from "react"
 import { useSignOut } from "./useSignOut"
-import { cookies } from "@/utils/Cookies"
+import { cookies } from "@/utils/cookies"
 
 export const useRefreshToken = () => {
   const [refreshToken, { data, loading, error }] = useMutation(REFRESH_TOKEN)
