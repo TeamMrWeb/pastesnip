@@ -35,7 +35,7 @@ export default function UserTab() {
             <Link href={`/user/${loggedUser.id}`}>Profile</Link>
           </li>
           <li>
-            <button onClick={signOut}>Log out</button>
+            <button onClick={() => signOut()}>Log out</button>
           </li>
         </ul>
       </div>
