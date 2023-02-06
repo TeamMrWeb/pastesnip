@@ -9,6 +9,7 @@ function TextAreaSection() {
   const [showHighlight, setShowHighlight] = useState(true)
   const [languageHighlight, setLanguageHighlight] = useState("jsx")
   const { paste } = usePasteContext()
+
   return (
     <section className="text-green-9">
       <p>Store or share any text</p>

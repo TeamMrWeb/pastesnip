@@ -1,5 +1,6 @@
 import Select from "./Select"
 import Switch from "./Switch"
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter"
 
 export default function TextAreaHeader({
   showHighlight,
@@ -18,7 +19,7 @@ export default function TextAreaHeader({
           <Select
             name="Syntax Highlight"
             firstValue="Select Syntax"
-            options={["jsx", "javascript", "php"]}
+            options={SyntaxHighlighter.supportedLanguages}
             setValue={setLanguageHighlight}
           />
         </div>
