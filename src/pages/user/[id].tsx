@@ -1,12 +1,23 @@
 import { serverSideApolloFetching } from "@/apollo/serverSideApolloFetching"
 import Paste from "@/components/Paste"
 import PasteUserTab from "@/components/PasteUserTab"
+import { useLoggedUserContext } from "@/contexts/LoggedUserContext"
 import { PasteProps } from "interfaces"
 
 export default function User({ pastes }: { pastes: PasteProps[] }) {
+  const { loggedUser } = useLoggedUserContext()
+  const formatDate = (createdAt: string) => {
+    const date = new Date(Number(createdAt)).toLocaleDateString("en-US", {
+      month: "long",
+      day: "numeric",
+      year: "numeric"
+    })
+    return date
+  }
+
   return (
     <>
-      <PasteUserTab pasteTitle="Finisterix" createdAt="23/93" />
+      <PasteUserTab pasteTitle={loggedUser.username} createdAt={formatDate(loggedUser.createdAt)} />
       <ul className="flex flex-col w-full mt-5">
         <h2 className="text-white text-xl">My pastes</h2>
         {pastes &&
