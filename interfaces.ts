@@ -10,3 +10,11 @@ export interface PasteProps {
   createdAt: string
   syntax_highlight: string
 }
+
+export interface UserProps {
+  id: string
+  username: string
+  email: string
+  password: string
+  createdAt: string
+}
