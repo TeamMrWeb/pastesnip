@@ -22,3 +22,15 @@ export const PASTES = gql`
     }
   }
 `
+
+export const USER_BY_ID = gql`
+  query ($id: ID!) {
+    getUserById(id: $id) {
+      id
+      username
+      email
+      verified
+      createdAt
+    }
+  }
+`
