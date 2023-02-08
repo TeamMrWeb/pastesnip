@@ -53,3 +53,22 @@ export const PASTE_BY_ID = gql`
     }
   }
 `
+
+export const PASTES_BY_AUTHOR = gql`
+  query ($id: ID!) {
+    getPastesByAuthor(authorId: $id) {
+      id
+      title
+      content
+      syntax_highlight
+      tags
+      views
+      private
+      author {
+        id
+        username
+      }
+      createdAt
+    }
+  }
+`
