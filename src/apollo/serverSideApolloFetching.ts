@@ -24,10 +24,13 @@ export const serverSideApolloFetching = async ({
       refresh: refreshToken
     }
   }
-  const data = await apolloClient[fetch]({
-    context,
-    query: schema,
-    variables
-  })
-  return data
+  try {
+    return await apolloClient[fetch]({
+      context,
+      query: schema,
+      variables
+    })
+  } catch (error) {
+    return error
+  }
 }
