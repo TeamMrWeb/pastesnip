@@ -7,8 +7,10 @@ export interface ValuesProps {
 export interface PasteProps {
   id: string
   title: string
+  content: string
   createdAt: string
   syntax_highlight: string
+  author: UserProps
 }
 
 export interface UserProps {
