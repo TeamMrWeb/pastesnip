@@ -1,3 +1,4 @@
+import { formatDate } from "@/utils/formatDate"
 import CalendarIcon from "../../public/calendar-icon.svg"
 
 export default function PasteUserTab({
@@ -18,7 +19,7 @@ export default function PasteUserTab({
           {subtitle && <p>{subtitle}</p>}
           <div className="flex gap-1">
             <CalendarIcon className="w-4 fill-gray-1" />
-            <p>{createdAt}</p>
+            <p>{formatDate(createdAt)}</p>
           </div>
         </div>
       </div>
