@@ -10,6 +10,7 @@ export interface PasteProps {
   content: string
   createdAt: string
   syntax_highlight: string
+  private: boolean
   author: UserProps
 }
 

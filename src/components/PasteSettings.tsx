@@ -21,7 +21,7 @@ interface PasteSettingsProps {
 
 export default function PasteSettings() {
   const [exposure, setExposure] = useState("Public")
-  const [syntaxhighLight, setSyntaxhighLight] = useState("Javascript")
+  const [syntaxHighLight, setSyntaxHighLight] = useState("Javascript")
   const { lazyMethod: createNewPaste } = useApollo({
     gqlType: CREATE_PASTE,
     successMessage: "You paste has been created successfully"
@@ -35,7 +35,7 @@ export default function PasteSettings() {
     const newPaste = {
       title: values.title,
       content: paste,
-      syntax_highlight: syntaxhighLight,
+      syntax_highlight: syntaxHighLight,
       private: exposure === "public",
       tags: values.tags.split(" ")
     }
@@ -72,7 +72,7 @@ export default function PasteSettings() {
                 name="Syntax Highlight"
                 firstValue="Select Syntax"
                 options={SyntaxHighlighter.supportedLanguages}
-                setValue={setExposure}
+                setValue={setSyntaxHighLight}
               />
             </FormInput>
             <FormInput name="tags">
@@ -89,7 +89,7 @@ export default function PasteSettings() {
               name="Exposure"
               firstValue="Select your exposure"
               options={["Public", "Private"]}
-              setValue={setSyntaxhighLight}
+              setValue={setExposure}
             />
             <Button text="Create new paste" type="submit" variant="primary" className="mt-5" />
           </Form>

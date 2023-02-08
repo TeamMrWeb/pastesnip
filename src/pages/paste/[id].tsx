@@ -24,7 +24,7 @@ export default function Paste({ paste, verified }: { paste: PasteProps; verified
             <div className="w-full max-w-[340px]">
               <Select
                 name="Syntax Highlight"
-                firstValue="Select Syntax"
+                firstValue={paste.syntax_highlight}
                 options={SyntaxHighlighter.supportedLanguages}
                 setValue={setLanguageHighlight}
               />
