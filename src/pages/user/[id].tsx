@@ -1,7 +1,7 @@
 import { serverSideApolloFetching } from "@/apollo/serverSideApolloFetching"
 import Paste from "@/components/Paste"
 import PasteUserTab from "@/components/PasteUserTab"
-import { LOGGED_USER, USER_BY_ID } from "@/graphql/queries"
+import { LOGGED_USER, PASTES_BY_AUTHOR, USER_BY_ID } from "@/graphql/queries"
 import { PasteProps, UserProps } from "interfaces"
 
 export default function User({
@@ -13,23 +13,14 @@ export default function User({
   pastes: PasteProps[]
   verified: boolean
 }) {
-  const formatDate = (createdAt: string) => {
-    const date = new Date(Number(createdAt)).toLocaleDateString("en-US", {
-      month: "long",
-      day: "numeric",
-      year: "numeric"
-    })
-    return date
-  }
-
   return (
     <>
       {!verified ? (
         <h1 className="text-white text-xl">You must verify your account to see this content</h1>
       ) : null}
-      <PasteUserTab pasteTitle={user.username} createdAt={formatDate(user.createdAt)} />
+      <PasteUserTab pasteTitle={user.username} createdAt={user.createdAt} />
       <ul className="flex flex-col w-full mt-5">
-        <h2 className="text-white text-xl">My pastes</h2>
+        <h2 className="text-white text-xl mb-5">My pastes</h2>
         {pastes &&
           pastes.map((paste: PasteProps) => (
             <Paste
@@ -62,15 +53,7 @@ export async function getServerSideProps({ req, res, query }: { req: any; res: a
       }
     }
   }
-  // const { query } = req.params.id
   const userId = query.id
-  // const data = await serverSideApolloFetching({
-  //   fetch: "query",
-  //   req,
-  //   res,
-  //   schema: PASTES
-  // })
-  // const pastes = data.data.pastes
   const userData = await serverSideApolloFetching({
     fetch: "query",
     req,
@@ -79,9 +62,16 @@ export async function getServerSideProps({ req, res, query }: { req: any; res: a
     variables: { id: userId }
   })
   const user = userData.data.getUserById
+  const pastesData = await serverSideApolloFetching({
+    fetch: "query",
+    req,
+    res,
+    schema: PASTES_BY_AUTHOR,
+    variables: { id: userId }
+  })
   return {
     props: {
-      // pastes
+      pastes: pastesData.data.getPastesByAuthor,
       user,
       verified: loggedUser.verified
     }
