@@ -51,7 +51,7 @@ export default function Paste({
       <div className="flex items-center justify-center gap-2 w-max col-span-2">
         <WorldIcon className="w-5" />
         <Link
-          href={`paste/${link}`}
+          href={`/paste/${link}`}
           className="text-[#7abefe] leading-4 h-5 justify-self-start hover:text-[#9fcffc]"
         >
           {title}
