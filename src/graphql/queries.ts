@@ -34,3 +34,22 @@ export const USER_BY_ID = gql`
     }
   }
 `
+
+export const PASTE_BY_ID = gql`
+  query ($id: ID!) {
+    getPasteById(id: $id) {
+      id
+      title
+      content
+      syntax_highlight
+      tags
+      views
+      private
+      author {
+        id
+        username
+      }
+      createdAt
+    }
+  }
+`
